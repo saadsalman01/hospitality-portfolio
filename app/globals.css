@@ -44,6 +44,12 @@ li {
   text-wrap: pretty;
 }
 
+/* Hotel demo look: square corners everywhere, without touching each component. */
+.square,
+.square * {
+  border-radius: 0 !important;
+}
+
 /* Scroll reveal: heavy fade up, driven by IntersectionObserver in components/reveal.tsx */
 .reveal {
   opacity: 0;

@@ -23,13 +23,13 @@ export const hotel = {
   place: "George Town, Penang",
   address: "42 Lebuh Armenian, George Town",
   theme: {
-    "--surface": "#faf6ef",
-    "--raised": "#ffffff",
-    "--ink": "#1f1a16",
-    "--muted": "#665b50",
-    "--accent": "#9a4a12",
+    "--surface": "#ffffff",
+    "--raised": "#f1f4f1",
+    "--ink": "#141c14",
+    "--muted": "#566056",
+    "--accent": "#3a4d39",
     "--on-accent": "#ffffff",
-    "--line": "#e7ddcc",
+    "--line": "#d9e0d9",
   } as Record<string, string>,
 
   hero: {
