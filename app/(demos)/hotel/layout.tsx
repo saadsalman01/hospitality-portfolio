@@ -40,10 +40,10 @@ export default function HotelLayout({ children }: LayoutProps<"/hotel">) {
           <Link href="/hotel" aria-label="Saffron Lane Hotel, home" className={onGreen}>
             <Logo />
           </Link>
-          <ul className="hidden items-center gap-8 md:flex">
+          <ul className="hidden items-center gap-8 lg:flex">
             {links.map((l) => (
               <li key={l.href}>
-                <Link href={l.href} className={`text-sm font-medium text-white/80 hover:text-white ${onGreen} ${fluid}`}>
+                <Link href={l.href} className={`text-sm font-medium whitespace-nowrap text-white/80 hover:text-white ${onGreen} ${fluid}`}>
                   {l.label}
                 </Link>
               </li>

@@ -1,8 +1,9 @@
 import { WarningCircle } from "@phosphor-icons/react/dist/ssr";
+import { StayDates } from "@/components/hotel/stay-dates";
 import { MAX_GUESTS } from "@/lib/booking/pricing";
 
 const field =
-  "min-h-12 w-full rounded-lg border border-line bg-raised px-3 py-2 text-base text-ink transition-all duration-700 ease-fluid focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent";
+  "min-h-12 w-full rounded-lg border border-line bg-surface px-3 py-2 text-base text-ink transition-all duration-700 ease-fluid focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent";
 
 /**
  * Plain GET form: dates and guests travel in the page address, so results can be
@@ -28,14 +29,7 @@ export function DateBar({
       className="flex flex-col gap-4 rounded-2xl border border-line bg-raised p-4 sm:p-6"
     >
       <div className="grid grid-cols-2 gap-4 md:grid-cols-[1fr_1fr_1fr_auto] md:items-end">
-        <label className="flex flex-col gap-2 text-sm font-semibold">
-          Arrival
-          <input type="date" name="in" required defaultValue={checkIn} className={field} />
-        </label>
-        <label className="flex flex-col gap-2 text-sm font-semibold">
-          Departure
-          <input type="date" name="out" required defaultValue={checkOut} className={field} />
-        </label>
+        <StayDates checkIn={checkIn} checkOut={checkOut} />
         <label className="col-span-2 flex flex-col gap-2 text-sm font-semibold md:col-span-1">
           Guests
           <select name="guests" defaultValue={guests} className={field}>
