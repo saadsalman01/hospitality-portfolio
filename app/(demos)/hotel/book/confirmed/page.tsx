@@ -90,7 +90,7 @@ async function ConfirmedContent({ searchParams }: PageProps<"/hotel/book/confirm
           </div>
           <div className={`${row} mt-2 border-t border-line pt-4 font-bold`}>
             <dt>Balance to pay at the hotel</dt>
-            <dd>{formatRM(booking.totalSen - booking.depositSen)}</dd>
+            <dd className="shrink-0">{formatRM(booking.totalSen - booking.depositSen)}</dd>
           </div>
         </dl>
         <p className="text-sm text-muted">

@@ -51,7 +51,7 @@ export default function HotelLayout({ children }: LayoutProps<"/hotel">) {
           </ul>
           <Link
             href="/hotel#dates"
-            className={`inline-flex min-h-12 items-center bg-[#ece3ce] px-6 py-2 text-sm font-semibold text-ink hover:bg-white ${onGreen} ${fluid}`}
+            className={`inline-flex min-h-12 shrink-0 items-center bg-[#ece3ce] px-4 py-2 text-sm whitespace-nowrap sm:px-6 font-semibold text-ink hover:bg-white ${onGreen} ${fluid}`}
           >
             Book your stay
           </Link>
