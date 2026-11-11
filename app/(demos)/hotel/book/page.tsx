@@ -7,7 +7,9 @@ import { redirect } from "next/navigation";
 import { Info } from "@phosphor-icons/react/dist/ssr";
 import { PriceBreakdown, stayQuery, StaySummary, Steps } from "@/components/hotel/parts";
 import { findRoom } from "@/content/properties/hotel";
-import { freeUnits } from "@/lib/booking/availability";
+import { SubmitButton } from "@/components/hotel/submit-button";
+import { freeUnits, releaseHold } from "@/lib/booking/availability";
+import { startBooking } from "./actions";
 import { addDays, formatDay, formatRM, hotelToday, parseStay, quote } from "@/lib/booking/pricing";
 
 export const metadata: Metadata = { title: "Your details", robots: { index: false } };
@@ -29,6 +31,16 @@ async function BookPageContent({ searchParams }: PageProps<"/hotel/book">) {
   if (!room || !parsed || "error" in parsed) redirect("/hotel/rooms");
   const stay = parsed;
   if (stay.guests > room.sleeps) redirect(`/hotel/rooms${stayQuery(stay)}`);
+
+  // Back from the payment page without paying: free the room that was being held.
+  const released = first(sp.released);
+  if (released) await releaseHold(released);
+  const problem =
+    first(sp.error) === "details"
+      ? "Check your name, email and phone, then try again."
+      : first(sp.error) === "payment"
+        ? "The payment page could not be opened. Nothing was charged. Try again."
+        : null;
 
   const q = quote(room.rateSen, stay.nights);
   const available = ((await freeUnits(stay.checkIn, stay.checkOut))[room.slug] ?? 0) > 0;
@@ -53,8 +65,17 @@ async function BookPageContent({ searchParams }: PageProps<"/hotel/book">) {
       </div>
       <StaySummary stay={stay} changeHref={`/hotel/rooms/${room.slug}`} />
 
-      {/* shortcut: submit is off until Stripe is connected; then this posts to a server action that holds the room and opens Stripe Checkout */}
-      <form className="flex flex-col gap-6">
+      {problem && (
+        <p role="alert" className="rounded-2xl border border-accent bg-raised p-4 text-base font-semibold">
+          {problem}
+        </p>
+      )}
+
+      <form action={startBooking} className="flex flex-col gap-6">
+        <input type="hidden" name="room" value={room.slug} />
+        <input type="hidden" name="in" value={stay.checkIn} />
+        <input type="hidden" name="out" value={stay.checkOut} />
+        <input type="hidden" name="guests" value={stay.guests} />
         <fieldset className="flex flex-col gap-4 rounded-2xl border border-line bg-raised p-6">
           <legend className="sr-only">Your details</legend>
           <label className={label}>
@@ -101,16 +122,14 @@ async function BookPageContent({ searchParams }: PageProps<"/hotel/book">) {
           </span>
         </p>
 
-        <button
-          type="submit"
-          disabled
-          className="inline-flex min-h-12 items-center justify-center rounded-full bg-accent px-6 py-2 text-base font-semibold text-on-accent disabled:cursor-not-allowed disabled:opacity-50"
-        >
-          Continue to payment
-        </button>
+        <SubmitButton busy="Holding your room">Continue to payment</SubmitButton>
         <p className="text-sm text-muted">
           You pay a {formatRM(q.deposit)} deposit on the next screen. The balance of {formatRM(q.balance)} is
-          paid at the hotel. Payment is not connected yet in this demo.
+          paid at the hotel. Your room is held for 30 minutes while you pay.
+        </p>
+        <p className="rounded-2xl border border-dashed border-line p-4 text-sm text-muted">
+          Concept project: payment runs in test mode and no money moves. Use card number 4242 4242 4242
+          4242 with any future expiry date and any three digits.
         </p>
       </form>
     </div>
