@@ -46,6 +46,18 @@
 - Rejected: deposit with balance at the hotel (needs a second payment path).
 - Rests on: open question in design/context-hotel.md.
 
+## 2026-11-11 · A deposit is paid at booking and the balance at the hotel
+- Decided by: the designer
+- Why: chosen over full payment when asked.
+- Rejected: full payment at booking (the earlier default above, now overturned).
+- Rests on: conversation, 2026-11-11.
+
+## 2026-11-11 · The deposit is 30% of the total, refunded in full until the free cancellation date and kept after it
+- Decided by: Claude, default
+- Why: large enough to deter no shows, small enough that a guest abroad commits without paying the whole stay; one rule for refund keeps the terms to a sentence.
+- Rejected: first night as deposit (varies with stay length and reads as a penalty); a fixed amount (unfair across room types).
+- Rests on: design/context-hotel.md, Ethical stance.
+
 ## 2026-11-11 · Wireframes are drawn at phone width only
 - Decided by: Claude, default
 - Why: the primary user is on a phone; desktop is an adaptation of the same order of content.

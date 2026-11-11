@@ -20,6 +20,7 @@ A new website for one hotel, on the web, mobile first. The hotel earns from room
 - Guest data falls under Malaysia's PDPA: collect only what a booking needs.
 - Rooms stay listed on booking sites; availability syncs both ways by iCal.
 - Guests book without creating an account.
+- A 30% deposit is paid at booking. The balance is paid at the hotel on arrival.
 
 ## Ethical stance
 
@@ -37,5 +38,4 @@ A new website for one hotel, on the web, mobile first. The hotel earns from room
 
 ## Open questions
 
-- Is payment the full amount at booking, or a deposit with the balance at the hotel?
 - Does the hotel want guests to be able to change or cancel a booking themselves from a link?

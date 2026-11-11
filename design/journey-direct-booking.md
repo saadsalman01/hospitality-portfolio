@@ -18,8 +18,8 @@ A guest wants to know what their dates cost at this hotel and to secure the room
 2. **Rooms for your dates.** Every room, each with the total for the stay including taxes. Available rooms carry "Select". A room that is taken stays in the list with its next free dates.
 3. **Room.** Photos, what is included, the price breakdown and the cancellation terms. A bar at the bottom holds the total and "Book this room". Guests who chose from the list can skip this screen.
 4. **Your details.** Stay summary, three required fields, two optional ones, the price breakdown, the cancellation terms, then "Continue to payment".
-5. **Payment.** Stripe's hosted page. The room is held for 15 minutes from this point.
-6. **Booking confirmed.** Reference, stay summary, add to calendar, message the hotel, directions.
+5. **Payment.** Stripe's hosted page, charging the 30% deposit. The room is held for 15 minutes from this point.
+6. **Booking confirmed.** Reference, stay summary with the deposit paid and the balance due at the hotel, add to calendar, message the hotel, directions.
 
 ## Context variants
 
@@ -37,8 +37,11 @@ A guest wants to know what their dates cost at this hotel and to secure the room
 | Room card, taken | Not available for these dates. Next free: 16 to 19 Dec |
 | Room page bar | Book this room |
 | Details button | Continue to payment |
-| Under the details button | You pay RM 1,222.32 on the next screen. Secure payment by Stripe. |
+| Under the details button | You pay a RM 366.70 deposit on the next screen. The balance of RM 855.62 is paid at the hotel. Secure payment by Stripe. |
+| Price rows | Deposit today (30%) · Balance at the hotel |
+| Cancellation | Free until Wed 9 Dec, with the deposit refunded in full. After that the deposit is kept. |
 | Confirmation heading | Booking confirmed |
+| Confirmation badge | Deposit paid |
 | Field error, email | Enter an email address, like name@example.com |
 | Hold expired | Your hold on this room ended. It is still available, so you can continue. |
 
