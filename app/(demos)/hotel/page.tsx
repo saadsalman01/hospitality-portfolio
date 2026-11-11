@@ -24,30 +24,35 @@ export default function HotelHome() {
       {/* Hero: green band with the headline, the photo hanging over its lower edge */}
       <section className="bg-accent text-on-accent">
         <div className="mx-auto max-w-6xl px-4 pt-12 pb-12 sm:px-6 sm:pt-16">
-          <p className="text-sm font-medium tracking-widest text-white/70 uppercase">{h.place}</p>
+          <p className="text-sm font-medium tracking-widest text-white/70 uppercase">
+            {h.place}
+          </p>
           <h1 className="mt-4 max-w-4xl text-5xl font-bold tracking-tight capitalize sm:text-7xl">
             {h.hero.headline.join(" ")}
           </h1>
         </div>
       </section>
       <section className="bg-linear-to-b from-accent from-50% to-surface to-50%">
-        <div className="relative mx-auto max-w-6xl px-4 sm:px-6">
-          <Image
-            src={h.hero.photo.src}
-            alt={h.hero.photo.alt}
-            priority
-            placeholder="blur"
-            sizes="(min-width: 1152px) 1104px, 100vw"
-            className="aspect-[4/3] w-full object-cover sm:aspect-[16/8]"
-          />
-          <div className="flex flex-col gap-4 bg-[#4f6f52] p-6 text-white md:absolute md:right-6 md:bottom-0 md:max-w-md md:bg-[#4f6f52]/90">
-            <p className="text-sm">{h.hero.sub}</p>
-            <Link
-              href="/hotel/rooms"
-              className={`inline-flex items-center gap-2 self-start text-sm font-semibold underline underline-offset-4 hover:gap-3 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white ${fluid}`}
-            >
-              View room list <ArrowRight size={16} weight="bold" aria-hidden />
-            </Link>
+        <div className="mx-auto max-w-6xl px-4 sm:px-6">
+          <div className="round relative overflow-hidden">
+            <Image
+              src={h.hero.photo.src}
+              alt={h.hero.photo.alt}
+              priority
+              placeholder="blur"
+              sizes="(min-width: 1152px) 1104px, 100vw"
+              className="aspect-[4/3] w-full object-cover sm:aspect-[16/8]"
+            />
+            <div className="flex flex-col gap-4 bg-[#4f6f52] p-6 text-white md:absolute md:right-0 md:bottom-0 md:max-w-md md:bg-[#4f6f52]/90">
+              <p className="text-sm">{h.hero.sub}</p>
+              <Link
+                href="/hotel/rooms"
+                className={`inline-flex items-center gap-2 self-start text-sm font-semibold underline underline-offset-4 hover:gap-3 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white ${fluid}`}
+              >
+                View room list{" "}
+                <ArrowRight size={16} weight="bold" aria-hidden />
+              </Link>
+            </div>
           </div>
         </div>
       </section>
@@ -76,7 +81,9 @@ export default function HotelHome() {
           </ul>
           <Reveal className="flex flex-col items-start gap-6">
             <p className={eyebrow}>About the hotel</p>
-            <h2 className={h2}>A trader&apos;s house from 1926, now fourteen quiet rooms</h2>
+            <h2 className={h2}>
+              A trader&apos;s house from 1926, now fourteen quiet rooms
+            </h2>
             <p className="text-base text-muted">{h.about.body}</p>
             <Link href="/hotel/rooms" className={cream}>
               See the rooms
@@ -87,7 +94,9 @@ export default function HotelHome() {
           {stats.map((s) => (
             <div key={s.label} className="flex flex-col-reverse gap-2">
               <dt className="text-sm text-muted">{s.label}</dt>
-              <dd className="text-5xl font-bold tracking-tight text-accent">{s.value}</dd>
+              <dd className="text-5xl font-bold tracking-tight text-accent">
+                {s.value}
+              </dd>
             </div>
           ))}
         </dl>
@@ -111,7 +120,7 @@ export default function HotelHome() {
                 <Reveal delay={i * 100}>
                   <Link
                     href={`/hotel/rooms/${room.slug}`}
-                    className="group relative block overflow-hidden focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+                    className="round group relative block overflow-hidden focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
                   >
                     <Image
                       src={room.photo.src}
@@ -122,14 +131,20 @@ export default function HotelHome() {
                     />
                     <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 bg-ink/80 p-4 text-white">
                       <p>
-                        <span className="block text-xl font-semibold tracking-tight">{room.name}</span>
+                        <span className="block text-xl font-semibold tracking-tight">
+                          {room.name}
+                        </span>
                         <span className="block text-sm text-white/80">
                           {room.bed} · sleeps {room.sleeps}
                         </span>
                       </p>
                       <p className="shrink-0 text-right">
-                        <span className="block text-xl font-semibold">{formatRM(room.rateSen)}</span>
-                        <span className="block text-sm text-white/80">a night, before tax</span>
+                        <span className="block text-xl font-semibold">
+                          {formatRM(room.rateSen)}
+                        </span>
+                        <span className="block text-sm text-white/80">
+                          a night, before tax
+                        </span>
                       </p>
                     </div>
                   </Link>
@@ -147,14 +162,15 @@ export default function HotelHome() {
           alt=""
           placeholder="blur"
           sizes="100vw"
-          className="absolute inset-0 size-full object-cover"
+          className="flat absolute inset-0 size-full object-cover"
         />
         <div className="relative bg-ink/70">
           <div className="mx-auto flex max-w-6xl flex-col items-start gap-6 px-4 py-24 text-white sm:px-6">
             <h2 className={`max-w-xl ${h2}`}>{h.tagline.join(" ")}</h2>
             <p className="max-w-xl text-base text-white/85">
-              Book on this site and the price you see is the price you pay: taxes included, no booking
-              fee, and free cancellation up to 3 days before arrival.
+              Book on this site and the price you see is the price you pay:
+              taxes included, no booking fee, and free cancellation up to 3 days
+              before arrival.
             </p>
             <Link href="/hotel#dates" className={cream}>
               Check availability
@@ -167,8 +183,12 @@ export default function HotelHome() {
         <Reveal className="grid gap-12 md:grid-cols-2">
           <div className="flex flex-col items-start gap-6">
             <p className={eyebrow}>Location</p>
-            <h2 className={h2}>Inside the old town, a walk from almost everything</h2>
-            <p className="text-base text-muted">{h.address}, inside the UNESCO heritage zone.</p>
+            <h2 className={h2}>
+              Inside the old town, a walk from almost everything
+            </h2>
+            <p className="text-base text-muted">
+              {h.address}, inside the UNESCO heritage zone.
+            </p>
             <a
               href="https://www.google.com/maps/search/?api=1&query=Lebuh+Armenian+George+Town+Penang"
               target="_blank"
@@ -180,7 +200,10 @@ export default function HotelHome() {
           </div>
           <ul className="flex flex-col self-center">
             {h.nearby.map((n) => (
-              <li key={n.place} className="flex items-baseline justify-between gap-4 border-b border-line py-4 text-base">
+              <li
+                key={n.place}
+                className="flex items-baseline justify-between gap-4 border-b border-line py-4 text-base"
+              >
                 <span className="font-semibold">{n.place}</span>
                 <span className="shrink-0 text-muted">{n.time}</span>
               </li>
@@ -197,10 +220,17 @@ export default function HotelHome() {
           </Reveal>
           <div className="mt-12 flex flex-col gap-4">
             {h.faq.map((item) => (
-              <details key={item.q} className="group border border-line bg-surface p-6">
+              <details
+                key={item.q}
+                className="group border border-line bg-surface p-6"
+              >
                 <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-lg font-semibold [&::-webkit-details-marker]:hidden">
                   {item.q}
-                  <CaretDown size={20} aria-hidden className={`shrink-0 text-muted group-open:rotate-180 ${fluid}`} />
+                  <CaretDown
+                    size={20}
+                    aria-hidden
+                    className={`shrink-0 text-muted group-open:rotate-180 ${fluid}`}
+                  />
                 </summary>
                 <p className="mt-4 text-base text-muted">{item.a}</p>
               </details>

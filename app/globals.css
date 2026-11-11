@@ -50,6 +50,17 @@ li {
   border-radius: 0 !important;
 }
 
+/* ...except photos, and blocks marked .round that clip a photo with something laid over it. */
+.square img,
+.square .round {
+  border-radius: 1rem !important;
+}
+
+.square .round img,
+.square img.flat {
+  border-radius: 0 !important;
+}
+
 /* Scroll reveal: heavy fade up, driven by IntersectionObserver in components/reveal.tsx */
 .reveal {
   opacity: 0;
