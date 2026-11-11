@@ -66,7 +66,7 @@ export default function HotelHome() {
         <div className="grid gap-12 md:grid-cols-2 md:items-center">
           <ul className="grid grid-cols-2 gap-4">
             {h.about.photos.map((photo, i) => (
-              <li key={photo.alt} className={i === 1 ? "pt-12" : "pb-12"}>
+              <li key={photo.alt}>
                 <Reveal delay={i * 100}>
                   <Image
                     src={photo.src}
@@ -85,8 +85,8 @@ export default function HotelHome() {
               A trader&apos;s house from 1926, now fourteen quiet rooms
             </h2>
             <p className="text-base text-muted">{h.about.body}</p>
-            <Link href="/hotel/rooms" className={cream}>
-              See the rooms
+            <Link href="/hotel/about" className={cream}>
+              Read our story
             </Link>
           </Reveal>
         </div>

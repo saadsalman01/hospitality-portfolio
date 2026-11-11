@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 
 const links = [
   { href: "/hotel/rooms", label: "Rooms" },
-  { href: "/hotel#the-hotel", label: "The hotel" },
+  { href: "/hotel/about", label: "Our story" },
   { href: "/hotel#location", label: "Location" },
   { href: "/hotel#questions", label: "Questions" },
 ];

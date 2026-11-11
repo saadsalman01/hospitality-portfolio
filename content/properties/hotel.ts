@@ -87,6 +87,38 @@ export const hotel = {
     ],
   },
 
+  // Invented for the concept, like the hotel itself.
+  story: {
+    intro:
+      "Saffron Lane began as one family's house and shop. Almost a hundred years later you can still read its history in the walls.",
+    chapters: [
+      {
+        year: "1926",
+        title: "A spice trader builds a house",
+        body: "Lim Boon Teck traded pepper, clove and saffron from the ground floor and raised his family on the floor above. He built the house around an open air well, so that light and rain could reach the middle of a long, narrow building.",
+        photo: { src: hallway, alt: "Covered five foot way with arches outside the hotel" },
+      },
+      {
+        year: "1950s to 1990s",
+        title: "Three generations under one roof",
+        body: "The shop became a sundry store, then a tailor, then a store room. The family stayed upstairs. The timber stairs, the carved screens and the patterned floor tiles were never replaced, mostly because nobody saw a reason to.",
+        photo: { src: street, alt: "Heritage shophouses on the corner of the lane at dusk" },
+      },
+      {
+        year: "2019",
+        title: "Two years of careful repair",
+        body: "When the house changed hands, the new owners kept what was there. Local craftsmen repaired the shutters and lime plaster by hand. The air well became the courtyard, and the old store rooms became the first guest rooms.",
+        photo: { src: courtyard, alt: "Open air courtyard with palms between the hotel's two wings" },
+      },
+      {
+        year: "Today",
+        title: "Fourteen rooms, one front door",
+        body: "The hotel is still small enough that the same people greet you, make your coffee and tell you where to eat. Breakfast comes from the kopitiam next door, as it has for the lane since before the house was built.",
+        photo: { src: roomDeluxe, alt: "Large room with a king bed, parquet floor and a sitting corner" },
+      },
+    ],
+  },
+
   nearby: [
     { place: "Khoo Kongsi clan house", time: "3 min walk" },
     { place: "Chew Jetty", time: "8 min walk" },
