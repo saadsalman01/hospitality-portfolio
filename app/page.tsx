@@ -16,6 +16,7 @@ import { IslandNav } from "@/components/island-nav";
 import { Reveal } from "@/components/reveal";
 import { TaglineReveal } from "@/components/tagline-reveal";
 import guesthousePhoto from "@/public/guesthouse/hero.jpg";
+import hostelPhoto from "@/public/hostel/hero.jpg";
 import hotelPhoto from "@/public/hotel/courtyard.jpg";
 
 export const metadata: Metadata = {
@@ -47,7 +48,7 @@ const work = [
     place: "George Town, Penang",
     body: "A guest picks dates, sees the full price with taxes, pays a 30% deposit by card and gets a booking reference. No account needed.",
     points: ["Live room availability", "Card payment in test mode", "Two guests can never book the same room"],
-    cta: "Open the hotel demo",
+    cta: "Open hotel demo",
   },
   {
     href: "/guesthouse",
@@ -58,12 +59,22 @@ const work = [
     place: "Ubud, Bali",
     body: "One fast page for a six room guesthouse. Rooms, prices and location, with every button opening a WhatsApp message to the owner.",
     points: ["One page, loads fast on mobile data", "Enquiries go straight to WhatsApp", "No booking system to manage"],
-    cta: "Open the guesthouse demo",
+    cta: "Open guesthouse demo",
+  },
+  {
+    href: "/hostel",
+    photo: hostelPhoto,
+    alt: "Scooters passing old shophouses in Hanoi's Old Quarter",
+    kind: "Hostel priced per bed",
+    name: "Lantern House",
+    place: "Old Quarter, Hanoi",
+    body: "The same page as the guesthouse with different content: dorm beds and private rooms, new photos and new colours. No new code was written for it.",
+    points: ["Prices per bed and per room", "Built from one content file", "Enquiries go straight to WhatsApp"],
+    cta: "Open hostel demo",
   },
 ];
 
 const upcoming = [
-  { kind: "Hostel", body: "Dorm beds and private rooms, priced per bed." },
   { kind: "Resort with a 3D tour", body: "A villa guests can look around before they book." },
 ];
 
@@ -146,7 +157,7 @@ export default function Home() {
               These properties are invented to show what the sites can do. Open them on your phone.
             </p>
           </Reveal>
-          <ul className="mt-12 grid gap-6 md:grid-cols-2">
+          <ul className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {work.map((w, i) => (
               <li key={w.href}>
                 <Reveal delay={i * 100} className="h-full">
@@ -175,7 +186,7 @@ export default function Home() {
                           </li>
                         ))}
                       </ul>
-                      <Link href={w.href} className={`mt-auto self-start ${primary}`}>
+                      <Link href={w.href} className={`mt-auto self-start whitespace-nowrap ${primary}`}>
                         {w.cta} <ArrowRight size={16} weight="bold" aria-hidden />
                       </Link>
                     </div>
@@ -184,7 +195,7 @@ export default function Home() {
               </li>
             ))}
           </ul>
-          <ul className="mt-6 grid gap-6 md:grid-cols-2">
+          <ul className="mt-6 grid gap-6">
             {upcoming.map((u) => (
               <li key={u.kind} className="flex flex-col gap-2 rounded-2xl border border-dashed border-line p-6">
                 <p className="text-sm font-semibold text-muted">In progress</p>

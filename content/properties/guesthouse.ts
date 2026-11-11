@@ -14,7 +14,42 @@ export const whatsapp = (message: string) =>
 
 export type Photo = { src: StaticImageData; alt: string };
 
-export const guesthouse = {
+/** Everything a one page property site needs. The hostel and the guesthouse both fill this in. */
+export type SimpleProperty = {
+  name: string;
+  place: string;
+  theme: Record<string, string>;
+  hero: { photo: Photo; headline: string[]; sub: string; proof: string };
+  tagline: string[];
+  copy: Record<
+    | "roomsTitle"
+    | "roomsBody"
+    | "askLabel"
+    | "directTitle"
+    | "stepsTitle"
+    | "locationTitle"
+    | "locationBody"
+    | "faqTitle"
+    | "ctaTitle"
+    | "ctaBody",
+    string
+  >;
+  rooms: {
+    name: string;
+    photo: Photo;
+    size: string;
+    sleeps: string;
+    bed: string;
+    price: string;
+  }[];
+  benefits: { title: string; body: string }[]; // four, in the order: price, included extra, cancellation, people
+  steps: { title: string; body: string }[];
+  gallery: Photo[];
+  nearby: { place: string; time: string }[];
+  faq: { q: string; a: string }[];
+};
+
+export const guesthouse: SimpleProperty = {
   name: "Kebun Tiga",
   place: "Ubud, Bali",
   theme: {
@@ -25,13 +60,13 @@ export const guesthouse = {
     "--accent": "#1f4d3a",
     "--on-accent": "#ffffff",
     "--line": "#ddd5c5",
-  } as Record<string, string>,
+  },
 
   hero: {
     photo: {
       src: hero,
       alt: "Green rice terraces and coconut palms under a bright sky near Ubud",
-    } as Photo,
+    },
     headline: ["A quiet garden guesthouse", "five minutes from Ubud"],
     sub: "Six rooms around a frangipani garden, breakfast on your terrace, and rice fields past the back gate. Message us your dates and we reply the same day.",
     proof: "Book direct and save 12% against booking sites. No booking fee.",
@@ -39,10 +74,29 @@ export const guesthouse = {
 
   tagline: ["Six rooms, one garden,", "and nowhere you need to be."],
 
+  copy: {
+    roomsTitle: "Three kinds of room",
+    roomsBody:
+      "Every room has air conditioning, hot water, fibre wifi and its own outdoor seat. Prices are per night for the whole room, breakfast included.",
+    askLabel: "Ask about this room",
+    directTitle: "Why guests message us directly",
+    stepsTitle: "Booked in three messages",
+    locationTitle: "Close to town, far from the traffic",
+    locationBody:
+      "The house sits on Jalan Sri Wedari, a lane of family compounds and rice fields north of the centre. Walk to dinner, sleep with the windows open.",
+    faqTitle: "Questions guests ask",
+    ctaTitle: "Tell us your dates and we will hold a room",
+    ctaBody:
+      "Lowest rate, breakfast included, free cancellation up to 3 days before arrival.",
+  },
+
   rooms: [
     {
       name: "Garden room",
-      photo: { src: roomGarden, alt: "Calm grey bedroom with a king bed and a door to the garden" },
+      photo: {
+        src: roomGarden,
+        alt: "Calm grey bedroom with a king bed and a door to the garden",
+      },
       size: "24 m²",
       sleeps: "Sleeps 2",
       bed: "King bed",
@@ -50,7 +104,10 @@ export const guesthouse = {
     },
     {
       name: "Terrace room",
-      photo: { src: roomTerrace, alt: "Bright bedroom with white linen and a private terrace" },
+      photo: {
+        src: roomTerrace,
+        alt: "Bright bedroom with white linen and a private terrace",
+      },
       size: "28 m²",
       sleeps: "Sleeps 2",
       bed: "Queen bed",
@@ -58,7 +115,10 @@ export const guesthouse = {
     },
     {
       name: "Family room",
-      photo: { src: roomFamily, alt: "Teak bed with rattan headboard and woven wall baskets" },
+      photo: {
+        src: roomFamily,
+        alt: "Teak bed with rattan headboard and woven wall baskets",
+      },
       size: "36 m²",
       sleeps: "Sleeps 4",
       bed: "King bed and two singles",
@@ -86,17 +146,35 @@ export const guesthouse = {
   ],
 
   steps: [
-    { title: "Send your dates", body: "Tell us when you arrive, how many nights, and how many guests." },
-    { title: "We confirm the room", body: "You get availability and the exact price, with no hidden fees." },
-    { title: "Pay when you arrive", body: "Cash or card at the house. No deposit for stays under 5 nights." },
+    {
+      title: "Send your dates",
+      body: "Tell us when you arrive, how many nights, and how many guests.",
+    },
+    {
+      title: "We confirm the room",
+      body: "You get availability and the exact price, with no hidden fees.",
+    },
+    {
+      title: "Pay when you arrive",
+      body: "Cash or card at the house. No deposit for stays under 5 nights.",
+    },
   ],
 
   gallery: [
-    { src: courtyard, alt: "View from a bed through open doors to the garden and a terracotta roof" },
-    { src: breakfast, alt: "Wooden table set with breakfast plates and fresh fruit" },
-    { src: garden, alt: "Fountain surrounded by palms in the guesthouse garden" },
+    {
+      src: courtyard,
+      alt: "View from a bed through open doors to the garden and a terracotta roof",
+    },
+    {
+      src: breakfast,
+      alt: "Wooden table set with breakfast plates and fresh fruit",
+    },
+    {
+      src: garden,
+      alt: "Fountain surrounded by palms in the guesthouse garden",
+    },
     { src: sunset, alt: "Rice fields glowing at sunset" },
-  ] as Photo[],
+  ],
 
   nearby: [
     { place: "Ubud Palace and market", time: "5 min by scooter" },
