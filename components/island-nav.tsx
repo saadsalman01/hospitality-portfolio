@@ -9,12 +9,16 @@ const fluid = "transition-all duration-700 ease-fluid";
 /** Floating glass pill. On small screens it morphs into a full screen menu. */
 export function IslandNav({
   brand,
+  brandHref = "#top",
   links,
   cta,
+  ctaNewTab = true,
 }: {
   brand: string;
+  brandHref?: string;
   links: NavLink[];
   cta: NavLink;
+  ctaNewTab?: boolean;
 }) {
   const [open, setOpen] = useState(false);
 
@@ -34,7 +38,7 @@ export function IslandNav({
         aria-label="Main"
         className="fixed top-6 left-1/2 z-50 flex w-max max-w-[calc(100vw-32px)] -translate-x-1/2 items-center gap-6 rounded-full border border-line bg-surface/80 py-2 pr-2 pl-6 backdrop-blur-xl"
       >
-        <a href="#top" className="text-base font-bold tracking-tight text-ink">
+        <a href={brandHref} className="text-base font-bold tracking-tight text-ink">
           {brand}
         </a>
 
@@ -53,8 +57,7 @@ export function IslandNav({
 
         <a
           href={cta.href}
-          target="_blank"
-          rel="noopener noreferrer"
+          {...(ctaNewTab ? { target: "_blank", rel: "noopener noreferrer" } : {})}
           className={`hidden rounded-full bg-accent px-3 py-2 text-sm font-semibold text-on-accent hover:opacity-90 active:scale-[0.98] md:inline-flex ${fluid}`}
         >
           {cta.label}
