@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Sora } from "next/font/google";
 import Link from "next/link";
+import { Logo } from "@/components/hotel/logo";
 import { hotel } from "@/content/properties/hotel";
 
 const sora = Sora({ subsets: ["latin"] });
@@ -36,8 +37,8 @@ export default function HotelLayout({ children }: LayoutProps<"/hotel">) {
 
       <header className="border-b border-white/15 bg-accent text-on-accent">
         <nav aria-label="Main" className="mx-auto flex max-w-6xl items-center justify-between gap-6 px-4 py-4 sm:px-6">
-          <Link href="/hotel" className={`text-xl font-semibold tracking-tight ${onGreen}`}>
-            Saffron Lane
+          <Link href="/hotel" aria-label="Saffron Lane Hotel, home" className={onGreen}>
+            <Logo />
           </Link>
           <ul className="hidden items-center gap-8 md:flex">
             {links.map((l) => (
@@ -64,7 +65,7 @@ export default function HotelLayout({ children }: LayoutProps<"/hotel">) {
       <footer className="bg-accent text-on-accent">
         <div className="mx-auto grid max-w-6xl gap-12 px-4 py-16 sm:px-6 md:grid-cols-[2fr_1fr_1fr]">
           <div className="flex flex-col gap-4">
-            <p className="text-2xl font-semibold tracking-tight">Saffron Lane</p>
+            <Logo large />
             <p className="max-w-md text-sm text-white/80">
               {hotel.address}. Fourteen rooms around an open air courtyard, booked direct with no
               booking fee.
