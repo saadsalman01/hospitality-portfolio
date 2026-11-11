@@ -24,6 +24,10 @@ export function StayDates({ checkIn = "", checkOut = "" }: { checkIn?: string; c
   const root = useRef<HTMLDivElement>(null);
   const today = picking ? hotelToday() : "";
 
+  // When the calendar closes, focus goes back to a date field instead of being lost.
+  const focusField = (i: number) =>
+    root.current?.querySelectorAll<HTMLButtonElement>("button[aria-haspopup]")[i]?.focus();
+
   const open = (which: "in" | "out") => {
     setPicking(which);
     setView(monthOf((which === "out" && to) || from || hotelToday()));
@@ -37,7 +41,11 @@ export function StayDates({ checkIn = "", checkOut = "" }: { checkIn?: string; c
       e.preventDefault();
       open(from ? "out" : "in");
     };
-    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setPicking(null);
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key !== "Escape" || !picking) return;
+      focusField(picking === "in" ? 0 : 1);
+      setPicking(null);
+    };
     const onDown = (e: PointerEvent) => !root.current?.contains(e.target as Node) && setPicking(null);
     form?.addEventListener("submit", onSubmit);
     document.addEventListener("keydown", onKey);
@@ -56,6 +64,7 @@ export function StayDates({ checkIn = "", checkOut = "" }: { checkIn?: string; c
       setPicking("out");
     } else {
       setTo(iso);
+      focusField(1);
       setPicking(null);
     }
   };
@@ -137,7 +146,7 @@ export function StayDates({ checkIn = "", checkOut = "" }: { checkIn?: string; c
               const selected = iso === from || iso === to;
               const between = from && to && iso > from && iso < to;
               const off =
-                iso < today || (picking === "out" && !!from && (iso <= from || iso > addDays(from, MAX_NIGHTS)));
+                iso < today || (picking === "out" && !!from && (iso < from || iso > addDays(from, MAX_NIGHTS)));
               return (
                 <button
                   key={iso}
