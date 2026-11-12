@@ -1,23 +1,15 @@
 import type { Metadata } from "next";
+import { Forum, Inter } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
-import {
-  ArrowRight,
-  ArrowUpRight,
-  CalendarCheck,
-  CreditCard,
-  DeviceMobile,
-  InstagramLogo,
-  Receipt,
-  Stack,
-  Translate,
-} from "@phosphor-icons/react/dist/ssr";
-import { IslandNav } from "@/components/island-nav";
+import { ArrowRight, ArrowUpRight, InstagramLogo } from "@phosphor-icons/react/dist/ssr";
 import { Reveal } from "@/components/reveal";
-import { TaglineReveal } from "@/components/tagline-reveal";
 import guesthousePhoto from "@/public/guesthouse/hero.jpg";
 import hostelPhoto from "@/public/hostel/hero.jpg";
 import hotelPhoto from "@/public/hotel/courtyard.jpg";
+
+const forum = Forum({ subsets: ["latin"], weight: "400" });
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Stillform Studio | Direct booking websites for hotels and guesthouses",
@@ -30,13 +22,50 @@ export const metadata: Metadata = {
   },
 };
 
+// Dark studio look: near black page, off white text, one blue accent, hairline borders.
+const theme = {
+  "--surface": "#111111",
+  "--raised": "#161616",
+  "--ink": "#ffffff",
+  "--muted": "#b4b4b4",
+  "--accent": "#6896ff",
+  "--on-accent": "#111111",
+  "--line": "rgba(255, 255, 255, 0.19)",
+} as React.CSSProperties;
+
 const instagram = "https://www.instagram.com/stillformstud/";
 const fluid = "transition-all duration-700 ease-fluid";
 const focus = "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent";
-const primary = `inline-flex min-h-12 items-center gap-2 rounded-full bg-accent px-6 py-2 text-base font-semibold text-on-accent hover:opacity-90 active:scale-[0.98] ${focus} ${fluid}`;
-const secondary = `inline-flex min-h-12 items-center gap-2 rounded-full border border-line bg-raised px-6 py-2 text-base font-semibold text-ink hover:border-ink active:scale-[0.98] ${focus} ${fluid}`;
-const section = "mx-auto max-w-6xl px-4 pb-24 sm:px-6";
-const h2 = "text-3xl font-bold tracking-tight sm:text-4xl";
+const pill = `inline-flex min-h-12 items-center gap-2 rounded-full px-6 py-2 text-xs font-medium tracking-wide whitespace-nowrap uppercase active:scale-[0.98] ${focus} ${fluid}`;
+const solid = `${pill} bg-white text-[#111111] hover:bg-accent`;
+const outline = `${pill} border border-line text-ink hover:border-white`;
+const display = `${forum.className} font-normal tracking-tight text-ink uppercase`;
+const label = "text-xs font-medium tracking-widest text-muted uppercase";
+const section = "mx-auto max-w-6xl px-4 py-24 sm:px-6";
+const light = "text-[#efefef]";
+
+/** Four point star, the small ornament that opens each section. */
+const Star = () => (
+  <svg viewBox="0 0 24 24" aria-hidden className="size-6 text-accent">
+    <path
+      fill="currentColor"
+      d="M12 0c.6 7.2 4.8 11.400 12 12-7.200.6-11.400 4.800-12 12-.6-7.200-4.800-11.400-12-12 7.200-.6 11.400-4.800 12-12Z"
+    />
+  </svg>
+);
+
+const stats = [
+  { value: "3", label: "Live demos to click through" },
+  { value: "1", label: "Shared system behind all of them" },
+  { value: "25%", label: "Of a stay kept by booking sites, at most" },
+  { value: "2 min", label: "To make a test booking yourself" },
+];
+
+const links = [
+  { href: "#work", label: "Work" },
+  { href: "#what-you-get", label: "What you get" },
+  { href: "#how-it-works", label: "How it works" },
+];
 
 const work = [
   {
@@ -64,7 +93,7 @@ const work = [
   {
     href: "/hostel",
     photo: hostelPhoto,
-    alt: "Scooters passing old shophouses in Hanoi's Old Quarter",
+    alt: "Scooters passing old shophouses in the Old Quarter of Hanoi",
     kind: "Hostel priced per bed",
     name: "Lantern House",
     place: "Old Quarter, Hanoi",
@@ -75,82 +104,114 @@ const work = [
 ];
 
 const features = [
-  { icon: DeviceMobile, title: "Built for phones first", body: "Guests book on a phone, often abroad and on mobile data. Pages are light and every button is easy to tap." },
-  { icon: Receipt, title: "The full price from the start", body: "Taxes are in the first price a guest sees. Nothing is added at the last step." },
-  { icon: CalendarCheck, title: "Real availability", body: "Rooms shown as free are free. The database refuses a second booking for the same room and night." },
-  { icon: CreditCard, title: "Payment that fits the country", body: "The demo uses Stripe. The payment part is separate, so it can be swapped for a provider that works where the property is." },
-  { icon: Stack, title: "One system, many properties", body: "Every demo here runs on the same code. A new property is new content, photos and colours, not a new build." },
-  { icon: Translate, title: "Plain words, usable by everyone", body: "Short sentences for guests reading in a second language. Works with a keyboard and a screen reader." },
+  { title: "Built for phones first", body: "Guests book on a phone, often abroad and on mobile data. Pages are light and every button is easy to tap." },
+  { title: "The full price from the start", body: "Taxes are in the first price a guest sees. Nothing is added at the last step." },
+  { title: "Real availability", body: "Rooms shown as free are free. The database refuses a second booking for the same room and night." },
+  { title: "Payment that fits the country", body: "The demo uses Stripe. The payment part is separate, so it can be swapped for a provider that works where the property is." },
+  { title: "One system, many properties", body: "Every demo here runs on the same code. A new property is new content, photos and colours, not a new build." },
+  { title: "Plain words, usable by everyone", body: "Short sentences for guests reading in a second language. Works with a keyboard and a screen reader." },
 ];
 
 const steps = [
   { title: "The property sends its content", body: "Photos, rooms, prices and policies. A shared folder or a WhatsApp chat is enough." },
-  { title: "We set it up", body: "The content goes into the shared system with the property's own colours and name." },
+  { title: "We set it up", body: "The content goes into the shared system with the colours and name of the property." },
   { title: "The owner checks a private link", body: "They click through it on their own phone and ask for changes." },
   { title: "It goes live on their domain", body: "Bookings and enquiries go to the property, not to a booking site." },
 ];
 
+const testSteps = [
+  "Pick dates and a room.",
+  "Enter any name, email and phone.",
+  "Pay with card 4242 4242 4242 4242, any future expiry date and any three digits.",
+  "You land on a confirmation with a booking reference.",
+];
+
 export default function Home() {
   return (
-    <div id="top" className="bg-surface text-ink">
+    <div id="top" style={theme} className={`bg-surface text-sm leading-relaxed text-muted ${inter.className}`}>
       <a
         href="#main"
-        className="sr-only rounded-full bg-accent px-3 py-2 text-sm font-semibold text-on-accent focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[60]"
+        className="sr-only rounded-full bg-white px-3 py-2 text-sm font-semibold text-[#111111] focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[60]"
       >
         Skip to content
       </a>
 
-      <IslandNav
-        brand="Stillform Studio"
-        links={[
-          { href: "#work", label: "Work" },
-          { href: "#what-you-get", label: "What you get" },
-          { href: "#how-it-works", label: "How it works" },
-        ]}
-        cta={{ href: instagram, label: "Message us" }}
-      />
+      <header className="mx-auto flex max-w-6xl items-center justify-between gap-6 px-4 py-6 sm:px-6">
+        <a href="#top" className={`${display} text-3xl ${focus}`}>
+          Stillform
+        </a>
+        <nav aria-label="Main" className="flex items-center gap-8">
+          <ul className="hidden items-center gap-8 md:flex">
+            {links.map((l) => (
+              <li key={l.href}>
+                <a
+                  href={l.href}
+                  className={`text-xs font-medium tracking-wide text-ink uppercase hover:text-accent ${focus} ${fluid}`}
+                >
+                  {l.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+          <a href={instagram} target="_blank" rel="noopener noreferrer" className={outline}>
+            Message us
+          </a>
+        </nav>
+      </header>
 
-      <main id="main" className="pt-32">
+      <main id="main">
+        {/* Hero: a dimmed photo panel with the headline set low and left */}
         <section className="mx-auto max-w-6xl px-4 sm:px-6">
-          <div className="mx-auto flex max-w-[680px] flex-col items-center gap-6 text-center">
-            <p className="text-sm font-semibold text-muted">Websites for hotels, hostels and guesthouses</p>
-            <h1 className="bg-linear-to-r from-black to-[#666666] bg-clip-text pb-1 text-4xl font-bold tracking-tight text-transparent sm:text-5xl">
-              Websites that take bookings directly
-            </h1>
-            <p className="text-lg text-muted">
-              Booking sites keep 15 to 25% of every stay. A property&apos;s own website keeps it. The demos
-              below are working sites, and one takes a booking from dates to deposit.
-            </p>
-            <div className="flex flex-wrap justify-center gap-4">
-              <Link href="/hotel" className={primary}>
-                Try a booking <ArrowRight size={16} weight="bold" aria-hidden />
-              </Link>
-              <a href="#work" className={secondary}>
-                See the work
-              </a>
-            </div>
-          </div>
-          <Reveal className="mt-12">
+          <div className="relative overflow-hidden rounded-3xl border border-line">
             <Image
               src={hotelPhoto}
-              alt="Courtyard of a heritage hotel with tiled floor and plants"
+              alt=""
               priority
               placeholder="blur"
               sizes="(min-width: 1152px) 1104px, 100vw"
-              className="aspect-[4/3] w-full rounded-3xl object-cover sm:aspect-[16/9]"
+              className="absolute inset-0 size-full object-cover"
             />
-          </Reveal>
+            <div className="relative flex min-h-[70vh] flex-col justify-end gap-6 bg-black/70 p-6 sm:p-12">
+              <p className={label}>Websites for hotels, hostels and guesthouses</p>
+              <h1 className={`${display} max-w-3xl text-5xl leading-none sm:text-7xl`}>
+                Websites that take <span className="text-accent">bookings</span> directly
+              </h1>
+              <p className={`max-w-xl text-base ${light}`}>
+                Booking sites keep 15 to 25% of every stay. The website of the property keeps it. The demos
+                below are working sites, and one takes a booking from dates to deposit.
+              </p>
+              <div className="flex flex-wrap gap-4 border-t border-line pt-6">
+                <Link href="/hotel" className={solid}>
+                  Try a booking <ArrowRight size={16} weight="bold" aria-hidden />
+                </Link>
+                <a href="#work" className={outline}>
+                  See the work
+                </a>
+              </div>
+            </div>
+          </div>
         </section>
 
-        <section aria-label="What makes this portfolio different" className="px-4 py-24 sm:px-6">
-          <TaglineReveal lines={["Every demo here is a working site,", "not a picture of one."]} />
+        <section aria-label="In numbers" className="mx-auto max-w-6xl px-4 pt-24 sm:px-6">
+          <dl className="grid grid-cols-2 gap-px overflow-hidden rounded-3xl border border-line bg-[var(--line)] lg:grid-cols-4">
+            {stats.map((s) => (
+              <div key={s.label} className="flex flex-col-reverse justify-end gap-4 bg-surface p-6 sm:p-8">
+                <dt className={label}>{s.label}</dt>
+                <dd className={`${display} text-5xl sm:text-6xl`}>{s.value}</dd>
+              </div>
+            ))}
+          </dl>
         </section>
 
         <section id="work" className={section}>
-          <Reveal>
-            <h2 className={h2}>Work</h2>
-            <p className="mt-4 max-w-[680px] text-lg text-muted">
-              These properties are invented to show what the sites can do. Open them on your phone.
+          <Reveal className="flex max-w-2xl flex-col gap-6">
+            <Star />
+            <h2 className={`${display} text-4xl sm:text-5xl`}>
+              Every demo is a <span className="text-accent">working</span> site
+            </h2>
+            <p className="text-base">
+              Not a picture of one. These properties are invented to show what the sites can do. Open them
+              on your phone.
             </p>
           </Reveal>
           <ul className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -162,28 +223,30 @@ export default function Home() {
                       src={w.photo}
                       alt={w.alt}
                       placeholder="blur"
-                      sizes="(min-width: 768px) 540px, 100vw"
+                      sizes="(min-width: 1024px) 350px, (min-width: 768px) 50vw, 100vw"
                       className="aspect-[4/3] w-full rounded-2xl object-cover"
                     />
                     <div className="flex flex-1 flex-col gap-4 p-4 sm:p-6">
-                      <p className="flex flex-wrap items-center gap-2 text-sm font-semibold text-muted">
-                        <span className="rounded-full border border-line bg-surface px-3 py-1">Concept project</span>
-                        {w.kind}
+                      <p className={`flex flex-wrap items-center gap-2 ${label}`}>
+                        Concept project <span aria-hidden className="size-1.5 rounded-full bg-accent" /> {w.kind}
                       </p>
-                      <h3 className="text-2xl font-bold tracking-tight">
-                        {w.name} <span className="block text-lg font-semibold text-muted">{w.place}</span>
+                      <h3 className={`${display} text-3xl`}>
+                        {w.name}
+                        <span className={`block pt-1 text-sm tracking-normal text-muted normal-case ${inter.className}`}>
+                          {w.place}
+                        </span>
                       </h3>
-                      <p className="text-base text-muted">{w.body}</p>
-                      <ul className="flex flex-col gap-2 text-base">
+                      <p>{w.body}</p>
+                      <ul className={`flex flex-col gap-2 border-t border-line pt-4 ${light}`}>
                         {w.points.map((p) => (
-                          <li key={p} className="flex gap-2">
-                            <span aria-hidden className="mt-2.5 size-1.5 shrink-0 rounded-full bg-ink" />
+                          <li key={p} className="flex gap-3">
+                            <span aria-hidden className="mt-2 size-1.5 shrink-0 rounded-full bg-accent" />
                             {p}
                           </li>
                         ))}
                       </ul>
-                      <Link href={w.href} className={`mt-auto self-start whitespace-nowrap ${primary}`}>
-                        {w.cta} <ArrowRight size={16} weight="bold" aria-hidden />
+                      <Link href={w.href} className={`mt-auto self-start ${outline}`}>
+                        {w.cta} <ArrowUpRight size={16} weight="bold" aria-hidden />
                       </Link>
                     </div>
                   </article>
@@ -193,28 +256,22 @@ export default function Home() {
           </ul>
         </section>
 
-        <section id="try-it" className={section}>
+        <section id="try-it" className="mx-auto max-w-6xl px-4 sm:px-6">
           <Reveal className="grid gap-12 rounded-3xl border border-line bg-raised p-6 sm:p-12 md:grid-cols-2">
-            <div>
-              <h2 className={h2}>Make a test booking</h2>
-              <p className="mt-4 text-lg text-muted">
-                It takes about two minutes. Payment runs in test mode, so no money moves.
-              </p>
-              <Link href="/hotel" className={`mt-6 ${primary}`}>
+            <div className="flex flex-col items-start gap-6">
+              <Star />
+              <h2 className={`${display} text-4xl sm:text-5xl`}>
+                Make a <span className="text-accent">test</span> booking
+              </h2>
+              <p className="text-base">It takes about two minutes. Payment runs in test mode, so no money moves.</p>
+              <Link href="/hotel" className={solid}>
                 Start at the hotel <ArrowRight size={16} weight="bold" aria-hidden />
               </Link>
             </div>
-            <ol className="flex flex-col gap-4 self-center text-base">
-              {[
-                "Pick dates and a room.",
-                "Enter any name, email and phone.",
-                "Pay with card 4242 4242 4242 4242, any future expiry date and any three digits.",
-                "You land on a confirmation with a booking reference.",
-              ].map((s, i) => (
-                <li key={s} className="flex gap-4">
-                  <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-accent text-sm font-bold text-on-accent">
-                    {i + 1}
-                  </span>
+            <ol className={`flex flex-col self-center text-base ${light}`}>
+              {testSteps.map((s, i) => (
+                <li key={s} className="flex gap-6 border-b border-line py-4 last:border-b-0">
+                  <span className={`${display} w-8 shrink-0 text-2xl !text-accent`}>0{i + 1}</span>
                   <span className="pt-1">{s}</span>
                 </li>
               ))}
@@ -223,56 +280,63 @@ export default function Home() {
         </section>
 
         <section id="what-you-get" className={section}>
-          <Reveal>
-            <h2 className={h2}>What you get</h2>
+          <Reveal className="flex flex-col gap-6">
+            <Star />
+            <h2 className={`${display} text-4xl sm:text-5xl`}>
+              What <span className="text-accent">you</span> get
+            </h2>
           </Reveal>
           <ul className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {features.map((f, i) => (
               <li key={f.title}>
-                <Reveal delay={(i % 3) * 100} className="flex h-full flex-col gap-4 rounded-2xl border border-line bg-raised p-6">
-                  <f.icon size={32} aria-hidden />
-                  <h3 className="text-xl font-bold tracking-tight">{f.title}</h3>
-                  <p className="text-base text-muted">{f.body}</p>
+                <Reveal
+                  delay={(i % 3) * 100}
+                  className="flex h-full flex-col gap-4 rounded-3xl border border-line p-6 sm:p-8"
+                >
+                  <p className={`${display} text-5xl`}>0{i + 1}</p>
+                  <h3 className={`${display} border-t border-line pt-6 text-2xl`}>{f.title}</h3>
+                  <p>{f.body}</p>
                 </Reveal>
               </li>
             ))}
           </ul>
         </section>
 
-        <section id="how-it-works" className={section}>
-          <Reveal>
-            <h2 className={h2}>How it works</h2>
-            <p className="mt-4 max-w-[680px] text-lg text-muted">
+        <section id="how-it-works" className="mx-auto max-w-6xl px-4 pb-24 sm:px-6">
+          <Reveal className="flex max-w-2xl flex-col gap-6">
+            <Star />
+            <h2 className={`${display} text-4xl sm:text-5xl`}>
+              How it <span className="text-accent">works</span>
+            </h2>
+            <p className="text-base">
               The same four steps for every property, which is what keeps ten sites affordable.
             </p>
           </Reveal>
           <ol className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {steps.map((s, i) => (
               <li key={s.title}>
-                <Reveal delay={i * 100} className="flex h-full flex-col gap-4 border-t border-ink pt-6">
-                  <p className="text-sm font-bold text-muted">Step {i + 1}</p>
-                  <h3 className="text-xl font-bold tracking-tight">{s.title}</h3>
-                  <p className="text-base text-muted">{s.body}</p>
+                <Reveal delay={i * 100} className="flex h-full flex-col gap-4 border-t border-line pt-6">
+                  <p className="text-xs font-medium tracking-widest text-accent uppercase">Step 0{i + 1}</p>
+                  <h3 className={`${display} text-2xl`}>{s.title}</h3>
+                  <p>{s.body}</p>
                 </Reveal>
               </li>
             ))}
           </ol>
         </section>
 
-        <section id="contact" className={section}>
-          <Reveal className="flex flex-col items-center gap-6 rounded-3xl bg-ink px-6 py-24 text-center text-surface">
-            <h2 className={h2}>Have properties that need a website?</h2>
-            <p className="max-w-[680px] text-lg text-surface/70">
+        <section id="contact" className="mx-auto max-w-6xl px-4 pb-24 sm:px-6">
+          <Reveal className="flex flex-col items-center gap-6 rounded-3xl border border-line bg-raised px-6 py-24 text-center">
+            <Star />
+            <h2 className={`${display} max-w-3xl text-4xl sm:text-6xl`}>
+              Have properties that need a <span className="text-accent">website</span>?
+            </h2>
+            <p className="max-w-xl text-base">
               Send a message with the type of property and what the site should do. You get a straight
               answer on what it takes.
             </p>
-            <a
-              href={instagram}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`inline-flex min-h-12 items-center gap-2 rounded-full bg-surface px-6 py-2 text-base font-semibold text-ink hover:opacity-90 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-surface ${fluid}`}
-            >
-              <InstagramLogo size={20} weight="fill" aria-hidden />
+            <a href={instagram} target="_blank" rel="noopener noreferrer" className={solid}>
+              <InstagramLogo size={16} weight="fill" aria-hidden />
               Message @stillformstud
               <ArrowUpRight size={16} weight="bold" aria-hidden />
             </a>
@@ -280,9 +344,9 @@ export default function Home() {
         </section>
       </main>
 
-      <footer className="mx-auto flex max-w-6xl flex-col gap-2 px-4 pb-12 text-sm text-muted sm:px-6">
-        <p className="font-bold text-ink">Stillform Studio</p>
-        <p>
+      <footer className="mx-auto flex max-w-6xl flex-col gap-4 border-t border-line px-4 py-12 sm:px-6 md:flex-row md:items-center md:justify-between">
+        <p className={`${display} text-2xl`}>Stillform Studio</p>
+        <p className="max-w-xl text-xs tracking-wide uppercase">
           The properties shown are fictional concept projects. Their names, prices and details are invented.
           Photos are from Unsplash.
         </p>
