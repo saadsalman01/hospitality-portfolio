@@ -74,10 +74,6 @@ const work = [
   },
 ];
 
-const upcoming = [
-  { kind: "Resort with a 3D tour", body: "A villa guests can look around before they book." },
-];
-
 const features = [
   { icon: DeviceMobile, title: "Built for phones first", body: "Guests book on a phone, often abroad and on mobile data. Pages are light and every button is easy to tap." },
   { icon: Receipt, title: "The full price from the start", body: "Taxes are in the first price a guest sees. Nothing is added at the last step." },
@@ -192,15 +188,6 @@ export default function Home() {
                     </div>
                   </article>
                 </Reveal>
-              </li>
-            ))}
-          </ul>
-          <ul className="mt-6 grid gap-6">
-            {upcoming.map((u) => (
-              <li key={u.kind} className="flex flex-col gap-2 rounded-2xl border border-dashed border-line p-6">
-                <p className="text-sm font-semibold text-muted">In progress</p>
-                <h3 className="text-xl font-bold tracking-tight">{u.kind}</h3>
-                <p className="text-base text-muted">{u.body}</p>
               </li>
             ))}
           </ul>
