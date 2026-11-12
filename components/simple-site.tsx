@@ -23,7 +23,7 @@ const button = `inline-flex min-h-12 items-center gap-2 rounded-full bg-accent p
 const benefitIcons = [HandCoins, Coffee, ShieldCheck, ChatCircleDots];
 
 /** One page property site with WhatsApp enquiries. A new property is a content file, not new code. */
-export function SimpleSite({ p }: { p: SimpleProperty }) {
+export function SimpleSite({ p, skin = "" }: { p: SimpleProperty; skin?: string }) {
   const bookLink = whatsapp(`Hi ${p.name}, I would like to check availability.
 Arrival: 
 Nights: 
@@ -40,7 +40,7 @@ Guests: `);
     </a>
   );
   return (
-    <div id="top" style={p.theme} className="bg-surface text-ink">
+    <div id="top" style={p.theme} className={`bg-surface text-ink ${skin}`}>
       <a
         href="#main"
         className="sr-only rounded-full bg-accent px-3 py-2 text-sm font-semibold text-on-accent focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[60]"

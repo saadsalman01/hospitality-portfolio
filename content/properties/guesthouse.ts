@@ -53,13 +53,13 @@ export const guesthouse: SimpleProperty = {
   name: "Kebun Tiga",
   place: "Ubud, Bali",
   theme: {
-    "--surface": "#f5f0e6",
-    "--raised": "#fffdf8",
-    "--ink": "#1b1f1a",
-    "--muted": "#5a6058",
-    "--accent": "#1f4d3a",
+    "--surface": "#efece8",
+    "--raised": "#ffffff",
+    "--ink": "#444349",
+    "--muted": "#6f6c66",
+    "--accent": "#c8481a",
     "--on-accent": "#ffffff",
-    "--line": "#ddd5c5",
+    "--line": "#dcd8d0",
   },
 
   hero: {

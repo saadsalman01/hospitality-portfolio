@@ -61,6 +61,77 @@ li {
   border-radius: 0 !important;
 }
 
+/*
+ * "City" skin for the one page template (used by the guesthouse): bold italic display
+ * headings in orange, spaced capital labels, serif body, square corners, yellow icon
+ * circles and a green booking band. Fonts come from the page as CSS variables.
+ */
+.skin-city {
+  font-family: var(--font-skin-body), serif;
+}
+
+.skin-city h1,
+.skin-city h2,
+.skin-city h3,
+.skin-city .tagline-word,
+.skin-city nav > a:first-child {
+  font-family: var(--font-skin-display), serif;
+  font-style: italic;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.skin-city h1,
+.skin-city main h2,
+.skin-city .tagline-word {
+  color: #dc5524;
+}
+
+/* The hero headline is gradient text in the base template; here it is plain orange. */
+.skin-city h1 {
+  background: none;
+  -webkit-text-fill-color: currentColor;
+}
+
+.skin-city a.rounded-full,
+.skin-city nav li a {
+  font-family: var(--font-skin-label), sans-serif;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.skin-city nav > a:first-child {
+  font-size: 1.25rem;
+}
+
+.skin-city a.rounded-full {
+  padding-inline: 1.5rem;
+}
+
+.skin-city a.rounded-full,
+.skin-city nav.rounded-full,
+.skin-city img,
+.skin-city details,
+.skin-city .reveal,
+.skin-city .reveal > img {
+  border-radius: 0;
+}
+
+.skin-city li span.rounded-full.bg-accent {
+  background: #ffdb74;
+  color: #444349;
+}
+
+.skin-city .reveal.bg-accent {
+  background: #447a33;
+}
+
+.skin-city .reveal.bg-accent h2 {
+  color: #ffffff;
+}
+
 /* Scroll reveal: heavy fade up, driven by IntersectionObserver in components/reveal.tsx */
 .reveal {
   opacity: 0;
