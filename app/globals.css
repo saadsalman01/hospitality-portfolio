@@ -110,15 +110,6 @@ li {
   padding-inline: 1.5rem;
 }
 
-.skin-city a.rounded-full,
-.skin-city nav.rounded-full,
-.skin-city img,
-.skin-city details,
-.skin-city .reveal,
-.skin-city .reveal > img {
-  border-radius: 0;
-}
-
 .skin-city li span.rounded-full.bg-accent {
   background: #ffdb74;
   color: #444349;
