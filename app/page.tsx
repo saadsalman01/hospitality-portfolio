@@ -7,6 +7,7 @@ import { Reveal } from "@/components/reveal";
 import guesthousePhoto from "@/public/guesthouse/hero.jpg";
 import hostelPhoto from "@/public/hostel/hero.jpg";
 import hotelPhoto from "@/public/hotel/courtyard.jpg";
+import hallwayPhoto from "@/public/hotel/hallway.jpg";
 
 const forum = Forum({ subsets: ["latin"], weight: "400" });
 const inter = Inter({ subsets: ["latin"] });
@@ -55,7 +56,7 @@ const Star = () => (
 );
 
 const stats = [
-  { value: "3", label: "Live demos to click through" },
+  { value: "4", label: "Live demos to click through" },
   { value: "1", label: "Shared system behind all of them" },
   { value: "25%", label: "Of a stay kept by booking sites, at most" },
   { value: "2 min", label: "To make a test booking yourself" },
@@ -68,6 +69,17 @@ const links = [
 ];
 
 const work = [
+  {
+    href: "https://saffron-lane-demo.vercel.app/",
+    photo: hallwayPhoto,
+    alt: "Hallway of a heritage shophouse hotel",
+    kind: "Full hotel website",
+    name: "Saffron Lane, full site",
+    place: "George Town, Penang",
+    body: "The same hotel as a complete website. Separate pages for rooms, the house, dining, experiences, events and offers, with a date search on the first screen.",
+    points: ["Seven sections in the menu", "Rooms compared side by side", "Demonstration booking from the home page"],
+    cta: "Open full site",
+  },
   {
     href: "/hotel",
     photo: hotelPhoto,
@@ -214,7 +226,7 @@ export default function Home() {
               on your phone.
             </p>
           </Reveal>
-          <ul className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <ul className="mt-12 grid gap-6 md:grid-cols-2">
             {work.map((w, i) => (
               <li key={w.href}>
                 <Reveal delay={i * 100} className="h-full">
@@ -223,7 +235,7 @@ export default function Home() {
                       src={w.photo}
                       alt={w.alt}
                       placeholder="blur"
-                      sizes="(min-width: 1024px) 350px, (min-width: 768px) 50vw, 100vw"
+                      sizes="(min-width: 768px) 50vw, 100vw"
                       className="aspect-[4/3] w-full rounded-2xl object-cover"
                     />
                     <div className="flex flex-1 flex-col gap-4 p-4 sm:p-6">
